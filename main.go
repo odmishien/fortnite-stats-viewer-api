@@ -6,15 +6,16 @@ import (
 	"log"
 	"net/http"
 	"net/url"
+	"os"
 )
 
-const APIKEY = "9bb551a2-e822a044-1e5c80cf-9fbd95da"
+var APIKEY = os.Getenv("APIKEY")
 
 func main() {
 	http.HandleFunc("/global-stats", globalStatsHandler)
 	http.HandleFunc("/recent-matches", recentMatchesHandler)
 
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	log.Fatal(http.ListenAndServe(":"+os.Getenv("PORT"), nil))
 }
 
 func globalStatsHandler(w http.ResponseWriter, r *http.Request) {
