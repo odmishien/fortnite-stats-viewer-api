@@ -26,6 +26,7 @@ func globalStatsHandler(w http.ResponseWriter, r *http.Request) {
 			log.Fatal(err)
 		}
 		w.Header().Set("Content-Type", "application/json")
+		w.Header().Set("Access-Control-Allow-Origin", "https://www.odmishien.fun/fortnite-stats-viewer/")
 		w.Write([]byte(res))
 	} else {
 		w.WriteHeader(http.StatusMethodNotAllowed)
